@@ -4,7 +4,7 @@ A home for independently developed plugins for [Desigma](https://github.com/deep
 
 ## Status
 
-Repository scaffold. Desigma's plugin runtime and installation format are still under development. There are no runnable plugins here yet, and this repository does not promise Figma plugin compatibility.
+Desigma supports installation of schema-version-1 native bundles from this repository. The installation demo is available under `plugins/install-demo`. JavaScript execution is not implemented yet; there are no runnable plugins here and no Figma plugin compatibility promise.
 
 ## Direction
 
@@ -20,4 +20,5 @@ This repository does not download, mirror, or redistribute Figma Community plugi
 
 - `plugins/` — future plugin projects and contribution guidance.
 
-The editor, document model, and MCP server remain in the main Desigma repository. Plugin manifests and APIs will be documented here when they are implemented; no draft format is presented as supported today.
+The editor, document model, and MCP server remain in the main Desigma repository. See [the installation demo](plugins/install-demo/README.md) for the supported manifest format, installation URL, and private-repository authentication. Runtime APIs are still under development.
+
