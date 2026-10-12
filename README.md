@@ -4,7 +4,7 @@ A home for independently developed plugins for [Desigma](https://github.com/deep
 
 ## Status
 
-Desigma supports installation of schema-version-1 native bundles from this repository. The installation demo is available under `plugins/install-demo`. JavaScript execution is not implemented yet; there are no runnable plugins here and no Figma plugin compatibility promise.
+Desigma supports installation of schema-version-1 native bundles from this repository. The installation demo is available under `plugins/install-demo`. Native JavaScript execution is not implemented yet. [Icon Browser](plugins/icon-browser/README.md) is a working standalone preview with search, favorites, customization and SVG export; installation and native insertion are not available yet. There is no Figma plugin compatibility promise.
 
 ## Direction
 
@@ -18,7 +18,6 @@ This repository does not download, mirror, or redistribute Figma Community plugi
 
 ## Layout
 
-- `plugins/` — future plugin projects and contribution guidance.
+- `plugins/` — native plugin projects, browser previews and contribution guidance.
 
 The editor, document model, and MCP server remain in the main Desigma repository. See [the installation demo](plugins/install-demo/README.md) for the supported manifest format, installation URL, and private-repository authentication. Runtime APIs are still under development.
-

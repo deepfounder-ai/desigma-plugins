@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Icon Browser · Desigma</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="./" aria-label="Icon Browser home"><span class="brand-mark" aria-hidden="true">✳</span><span>Icon Browser<span class="brand-caption">FOR DESIGMA</span></span></a>
+      <span class="preview-badge"><span></span>Plugin preview</span>
+    </header>
+    <main class="workspace">
+      <aside class="sidebar" aria-label="Library navigation">
+        <p class="eyebrow">YOUR LIBRARY</p>
+        <nav class="library-tabs" aria-label="Icon views">
+          <button id="all-tab" class="nav-item active" type="button" aria-pressed="true"><span aria-hidden="true">▦</span>All icons</button>
+          <button id="favorites-tab" class="nav-item" type="button" aria-pressed="false"><span aria-hidden="true">♡</span>Favorites</button>
+        </nav>
+        <div class="sidebar-divider"></div>
+        <label class="eyebrow" for="collection">COLLECTION</label>
+        <select id="collection" aria-label="Icon collection"><option value="">All collections</option></select>
+        <p class="sidebar-help">Find the right style for your next idea.</p>
+        <div class="source-note"><span class="source-dot" aria-hidden="true"></span><div>Powered by Iconify data<p>Open collections.<br>Individual icon licenses.</p></div></div>
+      </aside>
+      <section class="browser-pane" aria-labelledby="browser-title">
+        <div class="browser-heading"><div><p class="eyebrow">A SMALL DETAIL. A BIG DIFFERENCE.</p><h1 id="browser-title">Find your next icon.</h1><p class="intro">Explore icons from independent creators.</p></div><span class="heading-symbol" aria-hidden="true">✳</span></div>
+        <form id="search-form" class="search-form" role="search">
+          <span class="search-symbol" aria-hidden="true">⌕</span>
+          <label class="sr-only" for="query">Search icons</label>
+          <input id="query" name="query" type="search" value="home" placeholder="Search icons, like arrow or home…" autocomplete="off" spellcheck="false">
+          <button class="search-submit" type="submit">Search <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="results-toolbar"><span id="result-count">Explore the library</span><span class="grid-label">SELECT AN ICON TO CUSTOMIZE</span></div>
+        <p id="status" class="status" role="status" aria-live="polite">Loading icons…</p>
+        <div id="results" class="icon-grid" aria-label="Icon search results" aria-busy="false"></div>
+        <div class="load-more-wrap"><button id="load-more" class="secondary-button" type="button" hidden>Load more icons <span aria-hidden="true">↓</span></button></div>
+      </section>
+      <aside class="inspector" aria-label="Customize selected icon">
+        <div class="inspector-heading"><p class="eyebrow">ICON DETAILS</p><button id="favorite" class="favorite-button" type="button" title="Add to favorites" aria-label="Add to favorites" aria-pressed="false" disabled>♡</button></div>
+        <div id="selected-preview" class="selected-preview" aria-label="Selected icon preview"><span class="preview-placeholder" aria-hidden="true">✳</span></div>
+        <h2 id="selected-name">Make it yours</h2>
+        <p id="selected-collection" class="inspector-intro">Select an icon to adjust its look.</p><p id="selected-author" class="inspector-intro"></p>
+        <div class="inspector-divider"></div>
+        <div class="field-row"><label for="color">Color</label><div class="color-control"><input id="color" type="color" value="#29253d" aria-label="Icon color"><span>Custom</span></div></div>
+        <div class="field-row"><label for="size">Size</label><div class="number-control"><input id="size" type="number" min="8" max="512" step="1" value="48" aria-label="Icon size in pixels"><span>px</span></div></div>
+        <div class="field-row"><label for="rotate">Rotate</label><select id="rotate"><option value="0">0°</option><option value="90">90°</option><option value="180">180°</option><option value="270">270°</option></select></div>
+        <label class="flip-control" for="flip"><span>Flip horizontally</span><input id="flip" type="checkbox"></label>
+        <div class="inspector-divider"></div>
+        <div class="license-section"><p class="eyebrow">LICENSE &amp; ATTRIBUTION</p><div id="license" class="license-info">Collection details appear here when you select an icon.</div></div>
+        <p id="notice" class="status" role="status" aria-live="polite"></p><div class="inspector-actions"><button id="insert" class="primary-button" type="button" disabled title="Native insertion will be available when the Desigma plugin runtime is connected">Insert into Desigma <span aria-hidden="true">↗</span></button><p class="runtime-note">Native insertion is coming next.</p><div class="export-actions"><button id="copy" class="secondary-button" type="button" disabled>Copy SVG</button><button id="download" class="secondary-button" type="button" disabled>Download</button></div></div>
+      </aside>
+    </main>
+    <footer class="app-footer"><span><span class="footer-mark" aria-hidden="true">✳</span> A Desigma-native plugin</span><span>Independent icon browser · Built with public Iconify data</span></footer>
+  </div>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

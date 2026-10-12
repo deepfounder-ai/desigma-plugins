@@ -12,3 +12,5 @@ Each future plugin should live in its own directory and include:
 
 The initial installer supports the manifest described in the installation demo. Wait for a documented runtime contract before claiming a package can run. Do not copy packages from another platform without appropriate permission.
 
+
+[Icon Browser](icon-browser/README.md) provides a working independent icon search and SVG export preview. Native installation and insertion are pending.

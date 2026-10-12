@@ -1,0 +1,8 @@
+{
+  "name": "desigma-icon-browser",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node serve.js", "test": "node --test api.test.js" },
+  "engines": { "node": ">=22" }
+}
