@@ -15,13 +15,17 @@ Open http://127.0.0.1:4318. Run `npm test` for offline API tests.
 
 Search by keyword, filter by collection, save favorites, select an icon, adjust its color, height (8–512 pixels), rotation or horizontal flip, then copy or download SVG. Multicolor icons retain their fixed palette. This first version exports static SVG only; animated or active SVG content is rejected and shown as unavailable. The first search requests 64 results; Load more retrieves up to 999 matches and reveals 64 more at a time. Icon artwork is fetched in batches by collection, cached for the session, and customized locally to avoid a network request for every thumbnail or control change. Favorites are saved locally in this browser, with a limit of 200. Searches are submitted explicitly to avoid sending a request on every keystroke.
 
-## Integration status
+## Install in Desigma
 
-Version 0.1.0 is a functional browser preview. Desigma's current installer supports only a main script and does not yet execute JavaScript or host plugin panels. Therefore this project intentionally has no installable manifest yet. The Insert into Desigma button is disabled. Installation and native document insertion are the next integration step; no plugin has been installed by this preview.
+Requires Desigma 0.1.0-alpha.8 or newer. Open **Plugins**, choose **Install plugin**, and paste:
 
-The source is split into `api.js` (network and settings validation), `main.js` (panel behavior), `index.html` and `styles.css` (original UI). `serve.js` serves only those preview assets on loopback. It does not expose the repository or provide a network proxy.
+```text
+https://github.com/deepfounder-ai/desigma-plugins/blob/main/plugins/icon-browser/manifest.json
+```
 
-Future host integration needs an explicit panel asset format, permission enforcement for Iconify network access and local favorites, and a document insertion API with SVG validation and undo. Browser clipboard/download do not stand in for native insertion.
+Choose **Open** to launch the panel in your browser. **Insert into Desigma** adds the selected icon to the current document as editable layers, and one Undo removes it. The plugin asks for `document:insert-svg`, `storage:local` (favorites) and network access to `https://api.iconify.design` only.
+
+The source is split into `api.js` (network and settings validation), `main.js` (panel behavior), `index.html` and `styles.css` (original UI). `serve.js` serves the same files for the standalone preview, where Insert stays disabled because there is no host.
 
 ## Data and licenses
 

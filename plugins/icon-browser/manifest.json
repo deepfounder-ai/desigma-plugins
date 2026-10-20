@@ -1,0 +1,12 @@
+{
+  "schema_version": 2,
+  "id": "icon-browser",
+  "name": "Icon Browser",
+  "version": "0.2.0",
+  "license": "MIT",
+  "main": "main.js",
+  "panel": "index.html",
+  "files": ["index.html", "main.js", "api.js", "styles.css"],
+  "permissions": ["document:insert-svg", "storage:local"],
+  "network": ["https://api.iconify.design"]
+}

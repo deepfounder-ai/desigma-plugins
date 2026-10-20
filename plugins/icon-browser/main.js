@@ -7,6 +7,8 @@ let favorites = readFavorites(storage);
 let collections = {}, icons = [], selected = '', view = 'all', hasMore = false;
 let searchController, searchRevision = 0, exportBusy = false;
 let activeQuery = '', activePrefix = '', visibleCount = 64;
+// Set when running inside Desigma: the host serves host.json next to the panel.
+let host = null;
 const sources = new Map(), pendingSources = new Map();
 const notice = (message) => { $('notice').textContent = message; };
 const options = () => ({ color: $('color').value, size: Number($('size').value), rotate: Number($('rotate').value), flip: $('flip').checked });
@@ -89,6 +91,7 @@ function renderGrid() {
 function renderSelection() {
   const enabled = Boolean(selected);
   for (const id of ['favorite', 'copy', 'download', 'color', 'size', 'rotate', 'flip']) $(id).disabled = !enabled || exportBusy;
+  $('insert').disabled = !enabled || exportBusy || !host;
   if (!enabled) return;
   text('selected-name', selected.split(':')[1]);
   const info = collections[selected.split(':')[0]];
@@ -160,7 +163,12 @@ async function exportSvg(kind) {
     await loadSources([id]);
     if (!sources.has(id)) throw new Error('This icon cannot be exported as a static SVG.');
     const svg = safeSvg(customize(sources.get(id), settings));
-    if (kind === 'copy') {
+    if (kind === 'insert') {
+      const response = await fetch('insert-svg', { method: 'POST', credentials: 'omit', headers: { 'Content-Type': 'application/json', 'X-Desigma-Token': host.token }, body: JSON.stringify({ svg, name: id.split(':')[1] }) });
+      const reply = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(reply.error || 'Desigma could not insert this icon.');
+      notice(`Inserted ${id}. Check the collection’s license before using it.`);
+    } else if (kind === 'copy') {
       await navigator.clipboard.writeText(svg); notice(`Copied ${id} as SVG.`);
     } else {
       const url = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
@@ -190,6 +198,14 @@ $('favorite').addEventListener('click', () => {
 });
 $('copy').addEventListener('click', () => exportSvg('copy'));
 $('download').addEventListener('click', () => exportSvg('download'));
+$('insert').addEventListener('click', () => exportSvg('insert'));
+fetch('host.json', { credentials: 'omit' }).then(r => r.ok ? r.json() : null).then(info => {
+  if (!info?.token || !info.permissions?.includes('document:insert-svg')) return;
+  host = info;
+  $('insert').title = 'Insert the icon into the current Desigma document';
+  $('runtime-note').textContent = 'Inserts editable layers. One Undo removes it.';
+  renderSelection();
+}).catch(() => { /* Standalone preview: no host. */ });
 renderSelection();
 getCollections().then(data => {
   collections = { ...collections, ...data };
